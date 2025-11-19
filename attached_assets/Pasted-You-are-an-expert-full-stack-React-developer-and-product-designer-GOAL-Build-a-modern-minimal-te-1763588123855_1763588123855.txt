@@ -1,0 +1,495 @@
+You are an expert full-stack React developer and product designer.
+
+GOAL
+Build a modern, minimal “tech-health” style single-page web app for a US psychiatry practice called **PsychWebMD** (psychwebmd.com).
+
+The app must include:
+
+1. A redesigned, high-conversion **homepage**.
+2. A full **Appointment module** with:
+   - New Patient multi-step flow
+   - Enhanced Existing Patient flow
+   - (Optional) Intake Form placeholder
+3. Clean, responsive, production-quality UI (desktop + mobile).
+
+Use React (functional components with hooks). You can use plain CSS or CSS-in-JS. No external UI library is required, but you may use Tailwind-like utility classes if that’s easier.
+
+GENERAL DESIGN SYSTEM
+- Style: modern, minimal, tech-health (similar to Talkiatry / Cerebral).
+- Colors:
+  - Primary teal: #17B8A6
+  - Dark slate text: #1B1F2B
+  - Soft gray background: #F7F9FB
+  - White: #FFFFFF
+- Typography:
+  - Use a clean sans-serif font (e.g., system font stack or Inter).
+  - Clear hierarchy: h1, h2, h3, body, small.
+- Layout:
+  - Max-width container ~1100–1200px, centered.
+  - Generous spacing between sections.
+  - Rounded cards (border-radius ~16px) with very soft shadows.
+- Buttons:
+  - Primary: filled teal with white text; hover: slightly darker teal.
+  - Secondary: white with border and teal text.
+- Links:
+  - Understated; teal text; underline on hover.
+
+APP STRUCTURE
+Build at least these components:
+
+- `App` – overall layout, header, sections, booking modal.
+- `Header` – top navigation, sticky on scroll.
+- `HeroSection`
+- `StartYourJourneyCard`
+- `KeyBenefitsSection`
+- `HowItWorksSection`
+- `ProvidersSection`
+- `ConditionsSection`
+- `TestimonialsSection`
+- `InsuranceSection`
+- `WhyPsychWebMDSection`
+- `CallToActionSection`
+- `Footer`
+- `AppointmentModal` – shows when user clicks “Book Appointment” or selects a journey option.
+- `AppointmentTabs` – New Patient / Existing Patient / Intake Form.
+- `NewPatientFlow` – multi-step wizard.
+- `ExistingPatientFlow` – enhanced flow.
+- `Stepper` component for progress display.
+- Shared `FormField`, `RadioGroup`, `Select`, `Card` components where useful.
+
+Make the page scrollable as a normal landing page. The appointment flows should appear inside a centered modal overlay (or full-screen on mobile).
+
+==================================================
+1. HEADER & GLOBAL LAYOUT
+==================================================
+
+HEADER
+- Left: text logo **“PsychWebMD”** (use simple wordmark).
+- Right:
+  - Nav links (anchors that scroll to sections):
+    - “How It Works”
+    - “Providers”
+    - “Conditions”
+    - “Insurance”
+  - Primary button: **“Book Appointment”**.
+- The header becomes sticky after scrolling down a bit. When sticky, add a subtle shadow and reduced height.
+
+When “Book Appointment” is clicked, open the `AppointmentModal` with the appointment tabs.
+
+==================================================
+2. HERO SECTION & START YOUR JOURNEY CARD
+==================================================
+
+HERO SECTION (full-width, soft gradient background)
+Left side:
+
+- H1 (two-line):
+  - Line 1: **“Personalized Behavioral Healthcare”**
+  - Line 2: **“Anywhere. Anytime.”**
+- Subtext:
+  - “Compassionate psychiatric care designed around your needs. Online or in-person visits, with insurance accepted.”
+- Two buttons:
+  - Primary: “Book Appointment →” (opens AppointmentModal, default to New Patient tab)
+  - Secondary: “Learn More” (scrolls to How It Works section)
+- Small trust badges under buttons:
+  - “HIPAA-compliant & secure”
+  - “Accepted by major insurance providers”
+  - “5,000+ patients cared for” (mock number)
+
+Right side:
+
+A floating white card: `StartYourJourneyCard`.
+
+Card content:
+- Title: **“Get Started”**
+- Subtitle: “Choose how you’d like to begin care.”
+- Three selectable cards (large clickable list items with icon, title, subtitle, right arrow):
+
+  1) New Patient  
+     - Subtitle: “First-time comprehensive evaluation”
+  2) Existing Patient  
+     - Subtitle: “Follow-up or ongoing care”
+  3) Intake Form  
+     - Subtitle: “Complete detailed assessment”
+
+On hover, each card slightly lifts and shows a subtle shadow.
+
+Click behavior:
+- Clicking “New Patient” opens `AppointmentModal` with New Patient tab active.
+- Clicking “Existing Patient” opens `AppointmentModal` with Existing Patient tab active.
+- Clicking “Intake Form” opens AppointmentModal on a simple placeholder step that says “Coming soon: full online intake.”
+
+==================================================
+3. KEY BENEFITS SECTION
+==================================================
+
+`KeyBenefitsSection` (3 columns):
+
+Each column: icon + title + short description.
+
+1) “Quick Access” – “Same-week appointments often available.”
+2) “Online & In-Person” – “Care that fits your lifestyle.”
+3) “Expert Providers” – “Matched to your unique needs.”
+
+==================================================
+4. HOW IT WORKS SECTION
+==================================================
+
+`HowItWorksSection` – 4-step horizontal or vertical layout.
+
+Steps:
+1. **Choose your care path**  
+   New or existing patient, or complete an intake.
+2. **Complete a brief intake**  
+   Answer structured questions about your symptoms and goals.
+3. **Get matched with a provider**  
+   We pair you with a licensed clinician who fits your needs.
+4. **Start treatment**  
+   Begin therapy or medication management online or in-person.
+
+Use icons and numbered labels.
+
+==================================================
+5. PROVIDERS SECTION
+==================================================
+
+`ProvidersSection` – a grid of 3–4 provider cards (mock data).
+
+Each card:
+- Circular photo placeholder.
+- Name, e.g., “Dr. Sarah Nguyen, MD”.
+- Role & specialties, e.g., “Psychiatrist – Anxiety & Mood Disorders”.
+- Badge: “Accepting new patients”.
+
+==================================================
+6. CONDITIONS WE TREAT SECTION
+==================================================
+
+`ConditionsSection` – pills/chips of common conditions.
+
+Show a grid or horizontally scrollable pills:
+
+- Anxiety
+- Depression
+- ADHD
+- Bipolar Disorder
+- OCD
+- PTSD
+- Postpartum Mood Disorders
+- Personality Disorders
+- Substance Use
+- Children & Adolescents
+- Couples & Families
+
+Clicking a pill can simply highlight it and show a short description under the grid.
+
+==================================================
+7. TESTIMONIALS SECTION
+==================================================
+
+`TestimonialsSection` – a simple slider or 2–3 testimonial cards.
+
+Each card:
+- Star rating (e.g., 5 stars).
+- Short quote: “The process was easy and I felt truly heard.”
+- Attribution: “— PsychWebMD Patient” (no real names).
+
+==================================================
+8. INSURANCE SECTION
+==================================================
+
+`InsuranceSection` – logos row (can be simple boxes with names).
+
+Text:
+“PsychWebMD partners with many major insurance providers.”
+
+Mock logos / text labels: BCBS, Aetna, Cigna, UnitedHealthcare, Optum, Medicare.
+
+Subtext: “We’ll verify your benefits before your appointment.”
+
+==================================================
+9. WHY PSYCHWEBMD SECTION
+==================================================
+
+`WhyPsychWebMDSection` – 2-column or icon grid.
+
+Points to include:
+- Evidence-based treatment plans
+- Licensed psychiatric clinicians
+- Telehealth and in-person options
+- Personalized care for adults, teens, and families
+- Secure, HIPAA-compliant platform
+- Modern digital experience
+
+==================================================
+10. CTA BANNER
+==================================================
+
+`CallToActionSection` – gradient banner with centered text.
+
+Text:
+“Ready to begin your care? Same-week appointments may be available.”
+
+Button: “Book Appointment →” (opens AppointmentModal, New Patient tab).
+
+==================================================
+11. FOOTER
+==================================================
+
+`Footer` with 3–4 columns:
+
+Column headings & example links:
+
+- Care
+  - How It Works
+  - Providers
+  - Conditions
+- Patients
+  - New Patients
+  - Existing Patients
+  - FAQs
+- Company
+  - About
+  - Careers
+  - Contact
+- Legal
+  - Privacy Policy
+  - Terms of Service
+
+Bottom line disclaimer:
+“If you are in crisis or considering harming yourself, call 911 or go to the nearest emergency room immediately.”
+
+==================================================
+12. APPOINTMENT MODAL – GENERAL
+==================================================
+
+`AppointmentModal`:
+
+- Overlay: semi-transparent dark background.
+- Centered white card with max-width ~720px.
+- Close icon (X) in top-right.
+- Title area with tabs: New Patient / Existing Patient / Intake Form.
+- Under tabs, show a stepper and the relevant flow.
+
+`Stepper` component:
+- Displays text like: “Step 2 of 8” and short labels (Verify → About You → Concerns → Insurance → Questions → Emergency Contact → Schedule → Review).
+
+Keep state for each flow separate.
+
+==================================================
+13. NEW PATIENT FLOW (multi-step)
+==================================================
+
+`NewPatientFlow`:
+
+STEP 1 – Contact Verification
+- Title: “Verify your contact”
+- Radio toggle: Email / Mobile phone.
+- Field: Email input or Phone input accordingly.
+- Button: “Send Code”.
+- After sending, show 6-digit OTP inputs.
+- Button: “Continue”.
+- Link: “Didn’t receive a code? Resend.”
+
+For prototype, you can mock OTP validation (e.g., accept any 6 digits).
+
+STEP 2 – Who are you seeking help for?
+- Title: “Who are you seeking help for?”
+- Two large buttons: “Myself” and “Someone else”.
+- Next button.
+
+STEP 3 – Your Information
+- Fields:
+  - First Name
+  - Middle Name (optional)
+  - Last Name
+  - Date of Birth
+  - Cell Number
+  - Gender (radio: Male, Female)
+- Primary Address:
+  - Street Name
+  - Apt / Suite (optional)
+  - City
+  - State (dropdown with a few US states)
+  - ZIP Code
+- “How did you hear about us?” dropdown (Social Media, Friend/Family, Doctor Referral, Insurance Directory, Google Search, Other).
+- Continue button with basic validation on required fields.
+
+STEP 4 – Reason for Consultation
+- Title: “Your concern or reason for consultation”
+- List of checkboxes or radio options:
+  - Anxiety / Panic Symptoms
+  - Obsessive-Compulsive Disorder (OCD)
+  - Bipolar Mood Disorder
+  - Post-Traumatic Stress Disorder (PTSD)
+  - Depressive Symptoms / Major Depression
+  - Attention-Deficit/Hyperactivity Disorder (ADHD)
+  - Postpartum Depression / Perinatal Mood Concerns
+  - I’m Not Sure – I would like an assessment
+  - Eating Disorder / Disordered Eating Concerns
+  - Personality Disorder or Personality-Related Difficulties
+  - Substance Use / Addiction Concerns
+  - Self-Harm Thoughts or Behaviors
+  - Any Other (text area)
+- At least one concern must be selected.
+- Continue button.
+
+STEP 5 – Insurance Information
+- Fields:
+  - Member First Name
+  - Member Last Name
+  - Member Date of Birth
+  - Insurance Name
+  - Insurance Member ID
+  - Policy Holder (select: Me, Spouse, Parent, Step Parent, Other > if Other, show extra text field).
+- Continue.
+
+STEP 6 – Mental Health Questions
+- Title: “Let’s get some information about your mental health”
+- Checkbox: “I agree to provide this information in upcoming screens” (must be checked).
+- Questions:
+  1) “Have you been admitted to a hospital or inpatient facility for mental health concerns within the past year?” (Yes/No).
+  2) “Do you currently feel at risk of harming yourself?” (Yes/No).
+     - If Yes, show red alert text: “If you are in crisis, call 911 or go to the nearest emergency room. This system is not for emergencies.”
+  3) “Please share about your relationship with alcohol:” (dropdown)
+     - After drinking alcohol, I feel healthy
+     - After drinking alcohol, I feel unhealthy
+     - I am unsure
+     - I do not drink alcohol
+  4) “Do you use drugs?” (Yes/No)
+     - If Yes, show frequency dropdown:
+       - Daily
+       - Once a week
+       - Once a month
+       - Occasionally
+       - I have used drugs in the past but not currently
+- Continue.
+
+STEP 7 – Emergency Contact
+- Fields:
+  - First Name
+  - Middle Name (optional)
+  - Last Name
+  - Relationship (select: Caregiver, Friend, Parent, Spouse, Child, Sibling, Other).
+  - If Other, show extra text input.
+  - Phone Number.
+- Continue.
+
+STEP 8 – Schedule Appointment
+- Title: “Schedule your appointment”
+- Fields:
+  - Visit type: In-person / Telehealth (radio).
+  - Preferred provider (dropdown: “First available”, and 2–3 mock provider names).
+  - Date picker (can be a simple select for next 7 days).
+  - Time slots list (mocked, e.g., 9:00 AM, 10:30 AM, 2:00 PM).
+- After selection, Continue.
+
+STEP 9 – Review & Confirm
+- Show summary:
+  - Personal info and address
+  - Relationship (Myself/Someone else)
+  - Concerns
+  - Insurance info
+  - Mental health answers
+  - Emergency contact
+  - Appointment date, time, visit type, provider
+- “Edit” links that navigate back to each step.
+- Checkboxes:
+  - “I agree to the Terms & Conditions.”
+  - “I acknowledge the Privacy Policy / HIPAA Notice.”
+  - “I consent to receive appointment reminders via email/SMS.”
+- Button: “Confirm Appointment”.
+
+STEP 10 – Confirmation
+- Title: “Appointment request submitted”
+- Brief thank-you copy including first name.
+- Card summarizing appointment details.
+- Text: “We’ve sent a confirmation email and SMS with your visit details and, if telehealth, a secure video link.”
+- Button: “Back to homepage”.
+
+==================================================
+14. ENHANCED EXISTING PATIENT FLOW
+==================================================
+
+`ExistingPatientFlow` (shorter).
+
+STEP E0 – Lookup method
+- Title: “Welcome back. Let’s find your account.”
+- Radios:
+  - Email address
+  - Mobile phone
+  - Patient ID / MRN (optional)
+- Continue button.
+
+STEP E1 – Verify contact (OTP)
+- Show the chosen identifier field (email/phone/ID).
+- Button: “Send Code”.
+- OTP inputs (6 digits) with “Continue” and “Resend code”.
+- Mock logic:
+  - If identifier is blank, show error.
+  - If “not found” (can simulate with condition), show:
+    - Message: “We couldn’t find an existing patient with this information.”
+    - Buttons: “Try again” and “Book as a New Patient” (switch to New Patient flow and prefill email/phone).
+
+STEP E2 – Select patient profile
+- Assume 1–2 mock profiles tied to that contact.
+- If more than 1, show patient cards:
+  - Name, DOB, “Last visit: [date]”, provider name.
+- If only 1, auto-select.
+- Continue.
+
+STEP E3 – Visit details
+- Title: “Visit details”
+- Fields:
+  - Visit type (Follow-up medication management, Follow-up therapy, New concern, Paperwork/forms, Other with text field).
+  - Visit mode (In-person, Telehealth).
+  - Provider preference:
+    - Same provider as last visit (default)
+    - First available provider
+    - Choose provider (dropdown).
+  - Urgency:
+    - As soon as possible
+    - Within 1 week
+    - Within 2–4 weeks
+- Button: “See available times”.
+
+STEP E4 – Schedule appointment
+- Reuse scheduler UI from New Patient Step 8, but pre-filtered by provider and mode.
+- Show a highlighted top slot labelled “Best match for your preferences”.
+- After selection, Continue.
+
+STEP E5 – Review & confirm
+- Summary:
+  - Patient name
+  - Provider
+  - Visit type
+  - Mode
+  - Date & time
+- “Change” links for Provider, Date, Time.
+- Checkboxes:
+  - “I agree to the cancellation and no-show policy.”
+  - “I consent to receive appointment reminders via email/SMS.”
+- Button: “Confirm appointment”.
+
+STEP E6 – Confirmation
+- Title: “You’re all set, [First Name]!”
+- Appointment card with details.
+- Text: “We’ve sent a confirmation email and SMS with your appointment details and, if telehealth, a secure video link.”
+- Buttons:
+  - “Back to homepage”
+  - “Book another appointment”
+
+==================================================
+15. IMPLEMENTATION DETAILS
+==================================================
+
+- Use React with functional components and hooks (`useState`, `useEffect`).
+- Keep appointment state in a parent component for each flow, pass down via props.
+- Implement basic front-end validation and show inline error messages.
+- Make the layout responsive: stack elements vertically and make the modal full-width on small screens.
+- Deliver full working code:
+  - `index.html`
+  - `index.(js|jsx)` and other components
+  - CSS (inline, CSS file, or styled-components – your choice)
+
+Return the full React project code ready to run on Replit.
