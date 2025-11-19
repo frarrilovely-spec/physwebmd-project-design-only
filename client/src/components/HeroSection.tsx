@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Shield, Users, CheckCircle2 } from 'lucide-react';
 import StartYourJourneyCard from './StartYourJourneyCard';
-import heroBackground from '@assets/generated_images/Hero_background_gradient_bd7eaad5.png';
 
 interface HeroSectionProps {
   onBookAppointment: () => void;
@@ -12,12 +11,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onBookAppointment, onLearnMore, onSelectPath }: HeroSectionProps) {
   return (
     <section
-      className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(135deg, rgba(23, 184, 166, 0.05) 0%, rgba(23, 184, 166, 0.02) 100%), url(${heroBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/5"
       data-testid="section-hero"
     >
       <div className="container mx-auto px-4 max-w-7xl">
